@@ -144,10 +144,56 @@ h1 {
 }
 
 
-/************************************************** create content ************************************ */
+/************************************************** create content FileReader ************************************ */
+
+.subir input {
+    background-color: #234567;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.resultado {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-auto-rows: 150px;
+    gap: 10px;
+    margin: 10px;
+    padding: 10px;
+    background: #ddd;
+    color: var(--Bcolor-1);
+}
+
+.resultado img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.resultado img:first-child {
+    grid-column: 1/3;
+    grid-row: 1/3;
+}
+
+img:nth-child(6) {
+    grid-column: 2/4;
+    grid-row: 3/5;
+}
+
+img:nth-child(10) {
+    grid-row: span 2;
+}
 
 
-/************************************************** create content ************************************ */
+/************************************************** create content FileReader y DRAG DROP************************************ */
+
+.subir2 {
+    padding: 40px;
+    background-color: var(--Text-Color-1);
+    border: 3px dashed #999999;
+    color: #999999;
+    max-width: 800px;
+    margin: auto;
+}
 
 
 /************************************************** create content ************************************ */

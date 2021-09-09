@@ -77,8 +77,52 @@ const transferirTexturas = (n, e) => {
 
 }
 
-/************************************************** create content ************************************ */
-/************************************************** create content ************************************ */
+/************************************************** create content FileReader ************************************ */
+
+const archivo = document.getElementById('archivo');
+archivo.addEventListener("change", (e) => {
+    leerArchivo(archivo.files);
+});
+
+const leerArchivo = ar => {
+    for (var i = 0; i < ar.length; i++) {
+        const reader = new FileReader();
+        reader.readAsDataURL(ar[i]);
+        reader.addEventListener("load", (e) => {
+            let newImg = `<img src='${e.currentTarget.result}'>`;
+            document.querySelector(".resultado").innerHTML += newImg;
+        });
+    }
+}
+
+/************************************************** create content FillReader y DRAG y DROP ************************************ */
+
+const zona2 = document.querySelector(".subir2");
+
+zona2.addEventListener("dragover", e => {
+    e.preventDefault();
+    changeStyle(e.srcElement, "#444");
+});
+
+zona2.addEventListener("dragleave", e => {
+    e.preventDefault();
+    changeStyle(e.srcElement, "#888");
+});
+
+const changeStyle = (obj, colorZ) => {
+    obj.style.color = colorZ;
+    obj.style.border = `4 px dashed ${colorZ}`;
+}
+
+const cargarArch = ar => {
+    const reader = new FileReader();
+    reader.readAsText(ar);
+    reader.addEventListener("load", e => {
+        document.querySelector(".resultado2").textContent = e.currentTarget.result;
+    });
+}
+
+
 /************************************************** create content ************************************ */
 /************************************************** create content ************************************ */
 /************************************************** create content ************************************ */
