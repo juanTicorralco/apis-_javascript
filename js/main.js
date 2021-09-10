@@ -113,6 +113,7 @@ zona2.addEventListener("drop", e => {
     e.preventDefault();
     changeStyle(e.target, "#888");
     cargarArch(e.dataTransfer.files[0]);
+    zona2.style.border = "4px solid #888";
 });
 
 const changeStyle = (obj, colorZ) => {
@@ -124,7 +125,14 @@ const cargarArch = ar => {
     const reader = new FileReader();
     reader.readAsArrayBuffer(ar);
     reader.addEventListener("progress", e => {
-        let carga = (e.loaded / ar.size * 100);
+        let carga = Math.round(e.loaded / ar.size * 100);
+        let cargado = document.querySelector(".carga");
+        cargado.textContent = `${carga}%`;
+        cargado.style.width = `${carga}%`;
+    });
+    reader.addEventListener("loadend", e => {
+        zona2.style.border = "4px solid #1f1";
+        zona2.style.color = "#1f1";
     });
     reader.addEventListener("load", e => {
         let video = new Blob([new Uint8Array(e.currentTarget.result)], { type: 'video/mp4' });

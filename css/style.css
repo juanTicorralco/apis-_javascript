@@ -195,14 +195,17 @@ img:nth-child(10) {
     max-width: 800px;
     margin: 20px auto;
     font-size: 20px;
-    position: relative;
     z-index: 10;
+}
+
+.carga {
+    padding: 0;
 }
 
 .resultado2 {
     background-color: #cccccc;
-    margin: 20px;
     max-width: 1000px;
+    padding: 0;
     margin: auto;
 }
 
@@ -212,10 +215,19 @@ img:nth-child(10) {
 }
 
 .carga {
-    position: absolute;
+    width: 0%;
     left: 0;
     right: 0;
     margin-top: 0;
+    z-index: 0;
+    border: none;
+    background: #def;
+    transition: width 0.5s;
+}
+
+video {
+    max-width: 90%;
+    padding: 10px;
 }
 
 
