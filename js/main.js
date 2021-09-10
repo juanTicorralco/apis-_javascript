@@ -101,24 +101,38 @@ const zona2 = document.querySelector(".subir2");
 
 zona2.addEventListener("dragover", e => {
     e.preventDefault();
-    changeStyle(e.srcElement, "#444");
+    changeStyle(e.target, "#444");
 });
 
 zona2.addEventListener("dragleave", e => {
     e.preventDefault();
-    changeStyle(e.srcElement, "#888");
+    changeStyle(e.target, "#888");
+});
+
+zona2.addEventListener("drop", e => {
+    e.preventDefault();
+    changeStyle(e.target, "#888");
+    cargarArch(e.dataTransfer.files[0]);
 });
 
 const changeStyle = (obj, colorZ) => {
     obj.style.color = colorZ;
-    obj.style.border = `4 px dashed ${colorZ}`;
+    obj.style.border = `4px dashed ${colorZ}`;
 }
 
 const cargarArch = ar => {
     const reader = new FileReader();
-    reader.readAsText(ar);
+    reader.readAsArrayBuffer(ar);
+    reader.addEventListener("progress", e => {
+        let carga = (e.loaded / ar.size * 100);
+    });
     reader.addEventListener("load", e => {
-        document.querySelector(".resultado2").textContent = e.currentTarget.result;
+        let video = new Blob([new Uint8Array(e.currentTarget.result)], { type: 'video/mp4' });
+        let url = URL.createObjectURL(video);
+        let img = document.createElement("VIDEO");
+        img.setAttribute("src", url);
+        document.querySelector(".resultado2").appendChild(img);
+        img.play();
     });
 }
 
