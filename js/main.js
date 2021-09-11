@@ -140,12 +140,83 @@ const cargarArch = ar => {
         let img = document.createElement("VIDEO");
         img.setAttribute("src", url);
         document.querySelector(".resultado2").appendChild(img);
-        img.play();
+        img.addEventListener("click", (e) => {
+            if (!e.currentTarget.paused && !e.currentTarget.ended) {
+                e.currentTarget.pause();
+            } else {
+                e.currentTarget.play();
+            }
+        });
     });
 }
 
-
 /************************************************** create content ************************************ */
+
+const publicaciones = document.querySelector(".publicaciones");
+let contador = 0;
+
+const createPublicacionCode = (name, content) => {
+    const container = document.createElement("DIV");
+    const comentarios = document.createElement("DIV");
+    const nombre = document.createElement("H3");
+    const contenido = document.createElement("P");
+    const btnComentario = document.createElement("INPUT");
+    const btnEnviar = document.createElement("INPUT");
+
+    container.classList.add("publicacion");
+    comentarios.classList.add("comentarios");
+    btnEnviar.classList.add("enviar");
+    btnComentario.classList.add("comentario");
+
+    btnComentario.setAttribute("placeholder", "introduce un comentario");
+    nombre.textContent = name;
+    contenido.textContent = content;
+
+    btnEnviar.type = "submit";
+
+    comentarios.appendChild(btnComentario);
+    comentarios.appendChild(btnEnviar);
+
+    container.appendChild(nombre);
+    container.appendChild(contenido);
+    container.appendChild(comentarios);
+
+    return container;
+
+}
+
+const cargarMasPublis = entry => {
+    if (entry[0].isIntersecting) cargarPublicaciones(4);
+}
+
+const observer = new IntersectionObserver(cargarMasPublis);
+
+const cargarPublicaciones = async num => {
+    const request = await fetch("datos.txt");
+    const content = await request.json();
+    const arr = content.content;
+    const documentFragment = document.createDocumentFragment();
+    for (let i = 0; i < num; i++) {
+        if (arr[contador] != undefined) {
+            let newPublication = createPublicacionCode(arr[contador].nombre, arr[contador].contenido);
+            documentFragment.appendChild(newPublication);
+            contador++;
+            if (i == num - 1) observer.observe(newPublication);
+        } else {
+            if (publicaciones.lastElementChild.id !== "nomore") {
+                let noMore = document.createElement("H3");
+                noMore.textContent = "No hay mas publicaciones";
+                noMore.id = "nomore";
+                documentFragment.appendChild(noMore);
+                publicaciones.appendChild(documentFragment);
+                break;
+            }
+        }
+    }
+    publicaciones.appendChild(documentFragment);
+}
+
+cargarPublicaciones(4);
 /************************************************** create content ************************************ */
 /************************************************** create content ************************************ */
 /************************************************** create content ************************************ */
