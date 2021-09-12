@@ -150,7 +150,7 @@ const cargarArch = ar => {
     });
 }
 
-/************************************************** create content ************************************ */
+/************************************************** create content Observe ************************************ */
 
 const publicaciones = document.querySelector(".publicaciones");
 let contador = 0;
@@ -158,7 +158,7 @@ let contador = 0;
 const createPublicacionCode = (name, content) => {
     const container = document.createElement("DIV");
     const comentarios = document.createElement("DIV");
-    const nombre = document.createElement("H3");
+    const nombre = document.createElement("H2");
     const contenido = document.createElement("P");
     const btnComentario = document.createElement("INPUT");
     const btnEnviar = document.createElement("INPUT");
@@ -217,17 +217,67 @@ const cargarPublicaciones = async num => {
 }
 
 cargarPublicaciones(4);
-/************************************************** create content ************************************ */
-/************************************************** create content ************************************ */
-/************************************************** create content ************************************ */
-/************************************************** create content ************************************ */
-/************************************************** create content ************************************ */
-/************************************************** create content ************************************ */
-/************************************************** create content ************************************ */
-/************************************************** create content ************************************ */
-/************************************************** create content ************************************ */
-/************************************************** create content ************************************ */
-/************************************************** create content ************************************ */
-/************************************************** create content ************************************ */
-/************************************************** create content ************************************ */
-/************************************************** create content ************************************ */
+/************************************************** create content  cache ************************************ */
+
+caches.open("archivos-estaticos").then(cache => {
+    cache.addAll(["index.html", "css/style.css", "js/main.js"]);
+    cache.keys().then(res => {
+        console.log(res);
+    });
+});
+
+/************************************************** create content service woker ************************************ */
+if (navigator.serviceWorker) {
+    navigator.serviceWorker.register("js/worker.js");
+}
+
+/************************************************** create content canvas ************************************ */
+
+const canvas = document.getElementById('canvas');
+const dif = canvas.getBoundingClientRect();
+const ctx = canvas.getContext("2d");
+let painting, coler, linewidth, difX, difY;
+
+canvas.addEventListener("mousedown", e => {
+    difX = e.clientX - dif.left;
+    difY = e.clientY - dif.top;
+    painting = true;
+    coler = document.getElementById("color").value;
+    linewidth = document.getElementById("lw").value;
+    ctx.beginPath();
+
+
+});
+
+canvas.addEventListener("mousemove", e => {
+    if (painting) {
+        dibujar(difX, difY, e.clientX - dif.left, e.clientY - dif.top);
+        difX = e.clientX - difX.left;
+        difY = e.clientY - difY.top;
+    }
+
+});
+
+canvas.addEventListener("mouseup", () => {
+    ctx.closePath();
+    painting = false;
+});
+
+const dibujar = (x1, y1, x2, y2) => {
+        ctx.strokeStyle = coler;
+        ctx.lineWidth = linewidth;
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+    }
+    /************************************************** create content ************************************ */
+    /************************************************** create content ************************************ */
+    /************************************************** create content ************************************ */
+    /************************************************** create content ************************************ */
+    /************************************************** create content ************************************ */
+    /************************************************** create content ************************************ */
+    /************************************************** create content ************************************ */
+    /************************************************** create content ************************************ */
+    /************************************************** create content ************************************ */
+    /************************************************** create content ************************************ */
+    /************************************************** create content ************************************ */

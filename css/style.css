@@ -237,7 +237,7 @@ video {
     text-align: left;
     margin: 20px;
     opacity: 0;
-    animation: aparecer 1s forwards 0.5s;
+    animation: aparecer 1s forwards 0.1s;
 }
 
 .publicacion p {
@@ -291,6 +291,27 @@ h3 {
 
 
 /************************************************** create content ************************************ */
+
+.editor {
+    background-color: #ffffff;
+    width: fit-content;
+    border: 2px solid #000;
+    margin: auto;
+}
+
+.editor div {
+    background: #000;
+}
+
+#lw {
+    width: 400px;
+    height: 20px;
+}
+
+#color {
+    width: 50px;
+    height: 40px;
+}
 
 
 /************************************************** create content ************************************ */
