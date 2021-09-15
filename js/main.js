@@ -1,8 +1,8 @@
 'use strict'
 
 /************************************************** create clock ************************************ */
-const addZeros = n => {
-    /* if the clock is 0 */
+
+/* const addZeros = n => {
     if (n.toString().length < 2) return "0".concat(n);
     return n;
 }
@@ -18,7 +18,7 @@ const actualizarHora = () => {
 }
 
 actualizarHora();
-setInterval(actualizarHora, 1000);
+setInterval(actualizarHora, 1000); */
 
 /************************************************** create color page ************************************ */
 let api1 = document.querySelector(".api1");
@@ -44,13 +44,13 @@ definirColores();
 const color1 = () => {
     api1.style.backgroundColor = "var( --Bcolor-3)";
     api2.style.backgroundColor = "var( --Bcolor-3)";
-    api3.style.backgroundColor = "var( --Bcolor-3)";
+    //api3.style.backgroundColor = "var( --Bcolor-3)";
 }
 
 const color2 = () => {
     api1.style.backgroundColor = "var(--Bcolor-1)";
     api2.style.backgroundColor = "var(--Bcolor-2)";
-    api3.style.backgroundColor = "var(--Bcolor-1)";
+    //api3.style.backgroundColor = "var(--Bcolor-1)";
 }
 
 if (color == "dos") {
@@ -209,7 +209,6 @@ const cargarPublicaciones = async num => {
                 noMore.id = "nomore";
                 documentFragment.appendChild(noMore);
                 publicaciones.appendChild(documentFragment);
-                break;
             }
         }
     }
