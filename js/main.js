@@ -1,8 +1,7 @@
 'use strict'
 
 /************************************************** create clock ************************************ */
-
-/* const addZeros = n => {
+const addZeros = n => {
     if (n.toString().length < 2) return "0".concat(n);
     return n;
 }
@@ -18,12 +17,18 @@ const actualizarHora = () => {
 }
 
 actualizarHora();
-setInterval(actualizarHora, 1000); */
+setInterval(actualizarHora, 1000);
 
 /************************************************** create color page ************************************ */
 let api1 = document.querySelector(".api1");
 let api2 = document.querySelector(".api2");
 let api3 = document.querySelector(".api3");
+let api4 = document.querySelector(".api4");
+let api5 = document.querySelector(".api5");
+let api6 = document.querySelector(".api6");
+let api7 = document.querySelector(".api7");
+let api8 = document.querySelector(".api8");
+let api9 = document.querySelector(".api9");
 
 const definirColores = () => {
     document.querySelector(".dos").addEventListener("click", () => {
@@ -44,13 +49,25 @@ definirColores();
 const color1 = () => {
     api1.style.backgroundColor = "var( --Bcolor-3)";
     api2.style.backgroundColor = "var( --Bcolor-3)";
-    //api3.style.backgroundColor = "var( --Bcolor-3)";
+    api3.style.backgroundColor = "var( --Bcolor-3)";
+    api4.style.backgroundColor = "var( --Bcolor-3)";
+    api5.style.backgroundColor = "var( --Bcolor-3)";
+    api6.style.backgroundColor = "var( --Bcolor-3)";
+    api7.style.backgroundColor = "var( --Bcolor-3)";
+    api8.style.backgroundColor = "var( --Bcolor-3)";
+    api9.style.backgroundColor = "var( --Bcolor-3)";
 }
 
 const color2 = () => {
     api1.style.backgroundColor = "var(--Bcolor-1)";
     api2.style.backgroundColor = "var(--Bcolor-2)";
-    //api3.style.backgroundColor = "var(--Bcolor-1)";
+    api3.style.backgroundColor = "var(--Bcolor-1)";
+    api4.style.backgroundColor = "var(--Bcolor-2)";
+    api5.style.backgroundColor = "var(--Bcolor-1)";
+    api6.style.backgroundColor = "var(--Bcolor-2)";
+    api7.style.backgroundColor = "var(--Bcolor-1)";
+    api8.style.backgroundColor = "var(--Bcolor-2)";
+    api9.style.backgroundColor = "var(--Bcolor-1)";
 }
 
 if (color == "dos") {
